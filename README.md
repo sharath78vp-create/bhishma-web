@@ -9,32 +9,50 @@
 
 **SkillBridge** is a next-generation workforce intelligence single-page application built to help education administrators, government officers, universities, faculty, and students analyze and align workforce skills in real time.
 
-The platform provides multi-stakeholder portals that map real-world job requisitions against college curricula to identify acute talent shortages, curriculum bottlenecks, and emerging technological trends.
+The platform provides multi-stakeholder portals that map real-world job requisitions against college curricula to identify acute talent shortages, curriculum bottlenecks, emerging technological trends, and actionable academic interventions.
 
 ---
 
 ## 🚀 Key Features & Modules
 
 ### 1. 📊 Officer / Intelligence Command Center
-* **Skill Demand Intelligence** (`/intelligence/skill-demand`):
-  * **Multidimensional Filtering**: Filter across *Time Period*, *Industry*, *Skill Category*, and *Institution Type* with real-time keyword search.
-  * **Key Performance Indicators**: 5 dynamic KPI cards tracking High-Demand Skills, Critical Skill Gaps, Student Interest %, Curriculum Coverage %, and Overall Demand-Supply Gap.
-  * **Student Interest vs. Industry Demand**: Grouped comparative bar chart with multi-parameter sorting (*Highest Demand*, *Largest Gap*, *Highest Interest*).
-  * **Skill Demand & Supply Heatmap**: 6-metric matrix scoring interest, curriculum depth, corporate demand, student supply, gap severity, and YoY growth.
-  * **Curriculum Alignment**: Dual progress visualizer diagnosing syllabus coverage vs. market demand with actionable status badges (*Critical Revision*, *High Priority*, *Moderate*, *Stable*).
-  * **Workforce Quadrant Scatter Chart**: 4-Zone Matrix plotting skills into *Critical Talent Shortage*, *Aligned Skills*, *Potential Oversupply*, and *Low Priority*.
-  * **Skill Shortage Watchlist & Emerging Demand Signals**: Real-time deficit rankings and 12-month momentum sparklines.
-  * **Dynamic AI Insight Panel**: Real-time narrative synthesis highlighting acute mismatches and curriculum intervention triggers.
-  * **Skill Drilldown & Side-by-Side Comparison**: Comprehensive detail modal with 12-month trajectory curves, active recruiters, prerequisites, and comparison tray.
 
-* **Market Overview & Labour Market Command Center**:
-  * Real-time tracking of active job postings, median compensation packages, and hiring sector concentrations.
-* **Emerging Skills & Trajectory Forecasts**:
-  * Predictive momentum curves and requisition acceleration rates across modern technologies.
-* **Regional Trends & Spatial Intelligence**:
-  * Geospatial cluster telemetry and district-level workforce demand mapping.
-* **Curriculum Recommendations & Evidence Drawer**:
-  * Actionable syllabus interventions backed by industry requisition data and employer surveys.
+#### 📈 Skill Demand Intelligence (`/intelligence/skill-demand`)
+* **Multidimensional Filtering**: Filter across *Time Period*, *Industry*, *Skill Category*, and *Institution Type* with real-time keyword search.
+* **Key Performance Indicators**: 5 dynamic KPI cards tracking High-Demand Skills, Critical Skill Gaps, Student Interest %, Curriculum Coverage %, and Overall Demand-Supply Gap.
+* **Student Interest vs. Industry Demand**: Grouped comparative bar chart with multi-parameter sorting (*Highest Demand*, *Largest Gap*, *Highest Interest*).
+* **Skill Demand & Supply Heatmap**: 6-metric matrix scoring interest, curriculum depth, corporate demand, student supply, gap severity, and YoY growth.
+* **Curriculum Alignment**: Dual progress visualizer diagnosing syllabus coverage vs. market demand with actionable status badges (*Critical Revision*, *High Priority*, *Moderate*, *Stable*).
+* **Workforce Quadrant Scatter Chart**: 4-Zone Matrix plotting skills into *Critical Talent Shortage*, *Aligned Skills*, *Potential Oversupply*, and *Low Priority*.
+* **Skill Shortage Watchlist & Emerging Demand Signals**: Real-time deficit rankings and 12-month momentum sparklines.
+* **Dynamic AI Insight Panel**: Real-time narrative synthesis highlighting acute mismatches and curriculum intervention triggers.
+* **Skill Drilldown & Side-by-Side Comparison**: Comprehensive detail modal with 12-month trajectory curves, active recruiters, prerequisites, and comparison tray.
+
+#### ⚡ Emerging Skills Intelligence (`/intelligence/emerging-skills`)
+* **Executive Radar Header & Compact Filters**: Quick time-range toggles (`6M`, `12M`, `24M`, `Custom`), search bar, and compact dropdown filters for *Industry*, *Skill Category*, *Education Level*, and *Experience Level*.
+* **Emerging Skills Overview (5 KPIs)**: Administrative indicators tracking *Rising Skills (+5)*, *Declining Skills (-2)*, *High Future Potential (5)*, *Skill Shortage Risk (4)*, and *Curriculum Pressure (High)*.
+* **Interactive Skill Momentum Chart**: 12-month normalized multi-line telemetry curve tracking demand velocity across key emerging and legacy competencies with quick skill toggles.
+* **Rising vs. Declining Trajectories**: Side-by-side ranked comparative table distinguishing growth drivers, current demand, future potential, and respectful displacement risk analysis.
+* **"Why is Demand Changing?" Deep-Dive & Telemetry Signals**: Driver attribution scores across 4 core market forces and 5 live demand signal gauges (*Enterprise Postings*, *Industry Adoption*, *Student/LMS Upskilling*, *R&D/VC Capital*, and *Compensation Premiums*).
+* **"If This Trend Continues" (Future Impact Scenarios)**: Interactive `1-Year (2027)`, `3-Year (2029)`, and `5-Year (2031)` horizon stepper modeling impacts across *Workforce Roles*, *Education & Curriculum*, and *Industry Structure*.
+* **Future Skill Demand Forecast (2024–2029)**: Econometric autoregressive projections with 80% statistical confidence bands, snapshot metrics, and strict administrative projection disclaimers.
+* **Skill Evolution & Transition Pathways**: 4 connected transition pathways demonstrating how foundational competencies (e.g., *Data Analyst* or *Web Developer*) evolve into modern specializations (*Data Engineering*, *AI Application Engineering*).
+* **Industry Sector Drivers Breakdown**: Horizontal sectoral share distribution across *IT Services & SaaS*, *FinTech*, *Healthcare IT*, *E-commerce*, and *Automotive/Embedded*.
+* **Potential Future Skill Shortages**: Supply vs. Demand deficit matrix tracking hiring surge velocity against talent pipelines and time horizons (1–3 years).
+* **Curriculum Impact Advisory & Decision Dossier Modal**: Evidence-based advisory recommendations with the `[Review Curriculum Advisory]` trigger opening a consultative modal with syllabus recommendations, laboratory sandboxes (Hugging Face, Ollama, LangSmith), faculty upskilling notes, and officer review logging without autonomous changes.
+* **Emerging Skill Early-Warning Radar**: Bayesian anomaly detection scanner tracking requisition surges, regulatory compliance triggers, and memory-safety mandates.
+* **Emerging Skill Strategic Matrix (2D Quadrant)**: 2D bubble chart plotting *Current Demand Index (X)* vs. *Annual Velocity (Y)* across 4 strategic quadrants.
+* **Comprehensive Intelligence Register Table**: Full sortable and searchable matrix with multi-column sorting and one-click CSV matrix export.
+* **Data Sources Lineage & Confidence**: Multi-source telemetry validator (185,400+ requisitions, 4,250+ employers, 92,000+ enrolled learners, Level-A confidence).
+* **Officer Intelligence Brief & Strategic Actions**: Policy monitoring agenda reinforcing the administrative governance protocol: *The platform provides evidence, forecasts, and recommendations; the officer makes the final decision.*
+
+#### 🌐 Additional Officer Intelligence Modules
+* **Market Overview & Labour Market Command Center**: Real-time tracking of active job postings, median compensation packages, and hiring sector concentrations.
+* **Regional Trends & Spatial Intelligence**: Geospatial cluster telemetry and district-level workforce demand mapping.
+* **Skill Gaps & Structural Deficits**: Deep diagnosis of university syllabus deficiencies vs. enterprise skill requirements.
+* **Institute Insights**: State-wide institutional performance benchmarks and accreditation alignment metrics.
+* **Curriculum Recommendations**: Actionable syllabus interventions backed by industry requisition data and employer surveys.
+* **Data Sources & Audit Logs**: Transparent provenance tracking for all ingested labour market intelligence feeds.
 
 ---
 
@@ -72,15 +90,19 @@ bhishma-web/
 │   │   ├── charts/         # Base chart containers & Recharts wrappers
 │   │   ├── common/         # Buttons, Badges, Cards, Modals, Navigation
 │   │   ├── illustrations/  # Vector UI illustrations
-│   │   ├── intelligence/   # Intelligence dashboard & Skill Demand components
-│   │   │   └── skillDemand/ # Header, KPIs, Heatmap, Quadrant, Modals
+│   │   ├── intelligence/   # Intelligence dashboard components
+│   │   │   ├── emergingSkills/ # Header, KPIs, Momentum, Forecast, Advisories, Matrix
+│   │   │   └── skillDemand/    # Header, KPIs, Heatmap, Quadrant, Modals
 │   │   └── maps/           # Leaflet & spatial map visualizers
 │   ├── config/             # Map tile configurations & global constants
 │   ├── context/            # Global React state (Auth, Active Role, Filters)
 │   ├── layouts/            # Dashboard & portal layout shells
 │   ├── mock/               # Typed mock datasets (Ready for API integration)
+│   │   ├── emergingSkillsIntelligenceData.ts # Emerging skills telemetry & forecasts
+│   │   ├── skillDemandIntelligenceData.ts    # Skill demand & gap datasets
+│   │   └── skillBridgeData.ts                # Core platform mock feeds
 │   ├── pages/              # Route views organized by stakeholder domain
-│   │   ├── intelligence/   # Skill Demand, Market Overview, Regional Trends
+│   │   ├── intelligence/   # Emerging Skills, Skill Demand, Market Overview, Regional Trends
 │   │   ├── institute/      # Institutional analytics & curriculum alignment
 │   │   ├── trainer/        # Faculty course tracking
 │   │   ├── student/        # Student portal & career planner
@@ -139,9 +161,10 @@ bhishma-web/
 
 ## 🔌 API & Backend Integration
 
-All dashboard components and charts are decoupled from mock data using strongly typed interfaces located in:
-* [`src/types/skillbridge.ts`](./src/types/skillbridge.ts)
-* [`src/mock/skillDemandIntelligenceData.ts`](./src/mock/skillDemandIntelligenceData.ts)
+All dashboard components, forecasts, and charts are decoupled from mock data using strongly typed interfaces located in:
+* [`src/mock/emergingSkillsIntelligenceData.ts`](./src/mock/emergingSkillsIntelligenceData.ts) (Emerging Skills, Forecaster & Advisories)
+* [`src/mock/skillDemandIntelligenceData.ts`](./src/mock/skillDemandIntelligenceData.ts) (Skill Demand & Heatmap Intelligence)
+* [`src/types/skillbridge.ts`](./src/types/skillbridge.ts) (Platform Shared Models)
 
 To connect live backend endpoints, swap the mock utility calls with your backend REST API or GraphQL client (e.g., Axios / TanStack Query) using the established data contracts.
 
