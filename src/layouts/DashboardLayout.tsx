@@ -39,8 +39,8 @@ export const DashboardLayout: FC = () => {
         {/* Institutional System Footer */}
         <footer className="px-6 py-4 border-t border-slate-900 bg-slate-950/60 text-center text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>BHISHMA &bull; AI-Powered Labour Market Intelligence & Curriculum Alignment</span>
-          <span className="text-[11px] text-slate-400">
-            Smart India Hackathon 2026 &bull; Problem Statement 26134
+          <span className="text-[11px] text-brand-400 font-medium">
+            AI Labour Market Intelligence &amp; Industry Alignment Engine
           </span>
         </footer>
       </div>

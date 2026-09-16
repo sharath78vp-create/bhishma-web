@@ -218,7 +218,7 @@ export const RecommendationLifecycle: FC = () => {
             </span>
           </div>
           <span className="text-[11px] font-mono text-slate-400">
-            System Compliance: SIH-26134 Rule Engine
+            System Compliance: AICTE/EQF Validation Framework
           </span>
         </div>
       </CardContent>

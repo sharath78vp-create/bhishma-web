@@ -90,7 +90,7 @@ export const Sidebar: FC<SidebarProps> = ({
                 <div className="flex items-center gap-1.5">
                   <span className="font-extrabold text-sm tracking-wider text-white">BHISHMA</span>
                   <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-brand-500/20 text-brand-300 border border-brand-500/30">
-                    SIH 2026
+                    v2.4 Live
                   </span>
                 </div>
                 <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider truncate">

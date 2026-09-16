@@ -7,5 +7,6 @@ export * from './simulator';
 export * from './regional';
 export * from './evidence';
 export * from './timeSeries';
+export * from './districtJobs';
 
 

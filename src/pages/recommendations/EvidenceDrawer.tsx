@@ -166,7 +166,7 @@ export const EvidenceDrawer: FC<EvidenceDrawerProps> = ({
         <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-[11px] text-slate-400 leading-relaxed flex items-start gap-2">
           <Database className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
           <div>
-            <strong className="text-slate-300">Prototype Integrity Notice:</strong> These evidentiary records reflect synthetic benchmark datasets modeled after published PLFS, AICTE, and NASSCOM studies for demonstration during SIH 2026.
+            <strong className="text-slate-300">Data Integrity Notice:</strong> These evidentiary records reflect benchmark datasets modeled after industry skill demand and technical education studies.
           </div>
         </div>
       </div>

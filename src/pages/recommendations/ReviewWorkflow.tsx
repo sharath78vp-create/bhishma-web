@@ -77,7 +77,7 @@ export const ReviewWorkflow: FC<ReviewWorkflowProps> = ({ policy }) => {
           <CardTitle>Human-in-the-Loop Policy Governance</CardTitle>
         </div>
         <CardDescription>
-          Institutional decision workflow enabling ministry officers to inspect, parameterize, or approve the algorithmic recommendation
+          Institutional decision workflow enabling academic committees and education leadership to inspect, parameterize, or approve the algorithmic recommendation
         </CardDescription>
       </CardHeader>
 
@@ -85,7 +85,7 @@ export const ReviewWorkflow: FC<ReviewWorkflowProps> = ({ policy }) => {
         {/* Prototype status banner */}
         <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between gap-2">
           <span>
-            <strong>Governance Prototype Notice:</strong> Actions executed below simulate state approval workflows. Decision state is maintained locally for SIH 2026 jury demonstration.
+            <strong>Governance Prototype Notice:</strong> Actions executed below simulate institutional approval workflows. Decision state is maintained locally for interactive demonstration.
           </span>
           {reviewStatus !== 'pending' && (
             <button

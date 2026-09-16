@@ -27,8 +27,8 @@ export const mockEvidenceRecords: EvidenceRecord[] = [
   },
   {
     id: 'EVD-03',
-    source: 'National Sample Survey Office (PLFS Periodic Labour Force Survey Q4 2025)',
-    sourceType: 'Government Survey',
+    source: 'Global Labour Market & Education Indicator Study (Workforce Survey Q4 2025)',
+    sourceType: 'Workforce Statistical Benchmark',
     description: 'Quarterly macro labour statistics reporting formal youth employment in IT hubs. Highlighted that engineering graduates in Telangana face an average 5.4-month hiring lag due to mandatory post-college corporate retraining bootcamps.',
     sampleSize: '128,000 Urban Households Sampled',
     confidenceScore: 91,
@@ -51,9 +51,9 @@ export const mockEvidenceRecords: EvidenceRecord[] = [
   },
   {
     id: 'EVD-05',
-    source: 'India Semiconductor Mission (ISM) Manpower Projection Report 2026',
+    source: 'Global Semiconductor Alliance & Regional Tech Manpower Projection Report 2026',
     sourceType: 'Industry Body Report',
-    description: 'Government fab incentives and private commercial tapeouts in Gujarat and Karnataka project an immediate deficit of 24,000 qualified fabrication and verification engineers by Q3 2027.',
+    description: 'Commercial fab investments and private commercial tapeouts in emerging technology parks project an immediate deficit of 24,000 qualified fabrication and verification engineers by Q3 2027.',
     sampleSize: '18 Semiconductor Design & Fab Consortiums',
     confidenceScore: 93,
     verifiedDate: '2026-08-14',

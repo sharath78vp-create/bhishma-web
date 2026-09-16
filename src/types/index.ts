@@ -2,7 +2,7 @@ export type SkillStatus = 'emerging' | 'stable' | 'declining' | 'critical-shorta
 export type AlertSeverity = 'critical' | 'warning' | 'info';
 export type PriorityLevel = 'high' | 'medium' | 'low';
 export type RegionalSeverity = 'critical' | 'high' | 'moderate' | 'low';
-export type EvidenceSourceType = 'Government Survey' | 'Job Market Telemetry' | 'Industry Body Report' | 'Academic Audit' | 'Enterprise Survey';
+export type EvidenceSourceType = 'Workforce Statistical Benchmark' | 'Job Market Telemetry' | 'Industry Body Report' | 'Academic Audit' | 'Enterprise Survey';
 
 export interface LabourSignal {
   id: string;

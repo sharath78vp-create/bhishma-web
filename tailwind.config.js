@@ -4,55 +4,55 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        slate: {
-          50: '#F9FAFB',
-          100: '#F3F4F6',
-          200: '#E5E7EB',
-          300: '#D1D5DB',
-          400: '#9CA3AF',
-          500: '#6B7280',
-          600: '#4B5563',
-          700: '#333C48',
-          800: '#27303A',
-          850: '#1A2029',
-          900: '#11161D',
-          950: '#0B0F14',
-        },
+        // --- Primary Palette ---
+        surface:  '#EAEFEF', // lightest background
+        muted:    '#BFC9D1', // secondary / borders
+        dark:     '#25343F', // text & dark surfaces
+        accent:   '#FF9B51', // primary action / highlight
+
+        // --- Brand scale (accent-based) ---
         brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#121826',
+          50:  '#fff5ed',
+          100: '#ffe9d5',
+          200: '#ffd0a8',
+          300: '#ffb87a',
+          400: '#FF9B51', // base accent
+          500: '#f97c2a',
+          600: '#e05f10',
+          700: '#b8490d',
+          800: '#923b10',
+          900: '#763310',
+          950: '#401708',
         },
-        navy: {
-          800: '#1A2029',
-          900: '#11161D',
-          950: '#0B0F14',
+
+        // --- Neutral scale (dark-based) ---
+        neutral: {
+          50:  '#EAEFEF',
+          100: '#d6dfe3',
+          200: '#BFC9D1',
+          300: '#a2b2be',
+          400: '#7f95a5',
+          500: '#5f7a8d',
+          600: '#4a6070',
+          700: '#3a4e5c',
+          800: '#2e3f4b',
+          900: '#25343F',
+          950: '#141e24',
         },
-        accent: {
-          cyan: '#06b6d4',
-          emerald: '#10b981',
-          amber: '#f59e0b',
-          rose: '#f43f5e',
-        }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
-        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.3)',
+        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
+        'card-hover': '0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
+      },
+      borderRadius: {
+        'xl': '0.875rem',
+        '2xl': '1rem',
       }
     },
   },

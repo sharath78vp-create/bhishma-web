@@ -30,7 +30,7 @@ export const DataProvenanceFooter: FC = () => {
             </span>
           </div>
           <p className="text-[11px] text-slate-400 leading-normal">
-            Demonstration dataset &mdash; calibrated for SIH 2026 prototype exploration and policy simulation, not a live production feed. Benchmark indicators reflect sample surveys from NSSO (PLFS Q4 2025), AICTE Model Curriculum Audits, and multi-portal job requisitions.
+            Demonstration dataset &mdash; calibrated for enterprise skilling exploration and policy simulation, not a live production feed. Benchmark indicators reflect sample surveys from international labour studies, university curriculum audits, and multi-portal job requisitions.
           </p>
         </div>
 
@@ -38,11 +38,11 @@ export const DataProvenanceFooter: FC = () => {
         <div className="flex flex-wrap items-center gap-2 shrink-0 text-[11px]">
           <div className="flex items-center gap-1 px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
             <Database className="w-3 h-3 text-brand-400" />
-            <span>NSSO / PLFS Data</span>
+            <span>Workforce Indicators</span>
           </div>
           <div className="flex items-center gap-1 px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
             <FileCheck className="w-3 h-3 text-indigo-400" />
-            <span>AICTE Syllabi Registry</span>
+            <span>Curriculum Model Registry</span>
           </div>
           <div className="flex items-center gap-1 px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
             <CheckCircle className="w-3 h-3 text-emerald-400" />

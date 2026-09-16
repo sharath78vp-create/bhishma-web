@@ -27,7 +27,7 @@ export const SimulationDisclaimer: FC = () => {
 
         <div className="flex items-center gap-2 shrink-0 self-end sm:self-center text-[11px] font-mono text-slate-400 border-t sm:border-t-0 sm:border-l border-slate-800 pt-2 sm:pt-0 sm:pl-4">
           <Info className="w-3.5 h-3.5 text-amber-400" />
-          <span>SIH-26134 Sandbox Mode</span>
+          <span>Policy Scenario Simulator Mode</span>
         </div>
       </div>
     </div>
