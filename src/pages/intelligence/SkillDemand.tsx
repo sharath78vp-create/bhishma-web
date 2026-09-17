@@ -1,107 +1,252 @@
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { FC } from 'react';
-import { Card, CardHeader } from '../../components/common/Card';
-import { Badge } from '../../components/common/Badge';
-import { mockSkillDemandTable } from '../../mock/skillBridgeData';
-import { BarChart3, Search, TrendingUp, AlertTriangle } from 'lucide-react';
+import {
+  initialSkillDemandIntelligenceData,
+  filterSkillDemandData,
+  computeDashboardMetrics,
+  type FilterOptions,
+  type SkillDemandIntelligenceItem
+} from '../../mock/skillDemandIntelligenceData';
+import { SkillDemandHeader } from '../../components/intelligence/skillDemand/SkillDemandHeader';
+import { SkillDemandKpis } from '../../components/intelligence/skillDemand/SkillDemandKpis';
+import { StudentInterestVsDemandChart } from '../../components/intelligence/skillDemand/StudentInterestVsDemandChart';
+import { SkillDemandHeatmap } from '../../components/intelligence/skillDemand/SkillDemandHeatmap';
+import { CurriculumAlignmentSection } from '../../components/intelligence/skillDemand/CurriculumAlignmentSection';
+import { StudentInterestScatterQuadrant } from '../../components/intelligence/skillDemand/StudentInterestScatterQuadrant';
+import { SkillShortageWatchlist } from '../../components/intelligence/skillDemand/SkillShortageWatchlist';
+import { EmergingDemandSignals } from '../../components/intelligence/skillDemand/EmergingDemandSignals';
+import { SkillDemandInsightPanel } from '../../components/intelligence/skillDemand/SkillDemandInsightPanel';
+import { SkillDetailModal } from '../../components/intelligence/skillDemand/SkillDetailModal';
+import { SkillCompareModal } from '../../components/intelligence/skillDemand/SkillCompareModal';
+import { Scale } from 'lucide-react';
 
 export const SkillDemand: FC = () => {
-  const [query, setQuery] = useState('');
+  // -------------------------------------------------------------------------
+  // 1. FILTER & VIEW STATES
+  // -------------------------------------------------------------------------
+  const [filters, setFilters] = useState<FilterOptions>({
+    timePeriod: '12m',
+    industry: 'all',
+    skillCategory: 'all',
+    region: 'all',
+    institutionType: 'all',
+    searchQuery: '',
+    sortBy: 'demand'
+  });
 
-  const filtered = mockSkillDemandTable.filter(s =>
-    s.skill.toLowerCase().includes(query.toLowerCase()) ||
-    s.category.toLowerCase().includes(query.toLowerCase())
-  );
+  // -------------------------------------------------------------------------
+  // 2. MODAL & INTERACTION STATES
+  // -------------------------------------------------------------------------
+  const [selectedSkill, setSelectedSkill] = useState<SkillDemandIntelligenceItem | null>(null);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [compareList, setCompareList] = useState<SkillDemandIntelligenceItem[]>([]);
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+
+  // -------------------------------------------------------------------------
+  // 3. COMPUTED DATA & METRICS
+  // -------------------------------------------------------------------------
+  const filteredSkills = useMemo(() => {
+    return filterSkillDemandData(initialSkillDemandIntelligenceData, filters);
+  }, [filters]);
+
+  const dashboardMetrics = useMemo(() => {
+    return computeDashboardMetrics(filteredSkills);
+  }, [filteredSkills]);
+
+  // -------------------------------------------------------------------------
+  // 4. HANDLERS
+  // -------------------------------------------------------------------------
+  const handleFilterChange = <K extends keyof FilterOptions>(key: K, value: FilterOptions[K]) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleResetFilters = () => {
+    setFilters({
+      timePeriod: '12m',
+      industry: 'all',
+      skillCategory: 'all',
+      region: 'all',
+      institutionType: 'all',
+      searchQuery: '',
+      sortBy: 'demand'
+    });
+  };
+
+  const handleOpenDetail = (skill: SkillDemandIntelligenceItem) => {
+    setSelectedSkill(skill);
+    setIsDetailModalOpen(true);
+  };
+
+  const handleToggleCompare = (skill: SkillDemandIntelligenceItem) => {
+    setCompareList((prev) => {
+      const exists = prev.some((s) => s.id === skill.id);
+      if (exists) {
+        return prev.filter((s) => s.id !== skill.id);
+      }
+      if (prev.length >= 3) {
+        // Keep max 3 for clean side-by-side comparison
+        return [...prev.slice(1), skill];
+      }
+      return [...prev, skill];
+    });
+  };
+
+  const handleRemoveCompareSkill = (skillId: string) => {
+    setCompareList((prev) => prev.filter((s) => s.id !== skillId));
+  };
+
+  const handleClearCompare = () => {
+    setCompareList([]);
+  };
 
   return (
-    <div className="space-y-6 sm:space-y-8 animate-fade-in">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-emerald-600" />
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-              Skill Demand &amp; Supply Balance
-            </h1>
+    <div className="space-y-7 pb-16 animate-fade-in font-sans">
+      {/* ====================================================================
+          SECTION 1 — PAGE HEADER & FILTERS
+      ==================================================================== */}
+      <section aria-label="Skill Demand Header and Filters">
+        <SkillDemandHeader
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          onResetFilters={handleResetFilters}
+          totalSkillsCount={initialSkillDemandIntelligenceData.length}
+          filteredCount={filteredSkills.length}
+        />
+      </section>
+
+      {/* Floating Compare Tray Banner (Appears when items are queued for comparison) */}
+      {compareList.length > 0 && (
+        <div className="sticky top-4 z-40 bg-slate-900 text-white p-3 sm:p-4 rounded-2xl shadow-xl border border-slate-700 flex items-center justify-between gap-4 animate-slide-up">
+          <div className="flex items-center gap-2.5">
+            <span className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-400/30">
+              <Scale className="w-4 h-4" />
+            </span>
+            <div className="text-xs">
+              <span className="font-bold text-white">
+                {compareList.length} Skills Selected for Comparison
+              </span>
+              <p className="text-slate-400 text-[11px]">
+                {compareList.map((s) => s.skill).join(' vs. ')}
+              </p>
+            </div>
           </div>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Identify critical disparities between industry hiring demand and available collegiate talent supply.
-          </p>
-        </div>
 
-        {/* Search */}
-        <div className="relative w-full sm:w-64">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Filter skills by keyword..."
-            className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsCompareModalOpen(true)}
+              className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors shadow-sm"
+            >
+              Compare Side-by-Side
+            </button>
+            <button
+              onClick={handleClearCompare}
+              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-xs transition-colors"
+              title="Clear compare tray"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ====================================================================
+          SECTION 2 — KEY METRICS (5 KPI CARDS)
+      ==================================================================== */}
+      <section aria-label="Workforce Readiness Key Performance Indicators">
+        <SkillDemandKpis metrics={dashboardMetrics} />
+      </section>
+
+      {/* ====================================================================
+          SECTION 3 — MAIN VISUALIZATION: STUDENT INTEREST VS INDUSTRY DEMAND
+      ==================================================================== */}
+      <section aria-label="Student Interest vs Industry Demand Comparison">
+        <StudentInterestVsDemandChart
+          skills={filteredSkills}
+          onSelectSkill={handleOpenDetail}
+          selectedSkillId={selectedSkill?.id}
+        />
+      </section>
+
+      {/* ====================================================================
+          SECTION 4 — SKILL DEMAND & SUPPLY HEATMAP
+      ==================================================================== */}
+      <section aria-label="Cross-Dimensional Skill Heatmap Matrix">
+        <SkillDemandHeatmap
+          skills={filteredSkills}
+          onSelectSkill={handleOpenDetail}
+        />
+      </section>
+
+      {/* ====================================================================
+          SECTION 5 — CURRICULUM VS INDUSTRY DEMAND (CURRICULUM ALIGNMENT)
+      ==================================================================== */}
+      <section aria-label="Curriculum Alignment and Coverage Diagnosis">
+        <CurriculumAlignmentSection
+          skills={filteredSkills}
+          onSelectSkill={handleOpenDetail}
+        />
+      </section>
+
+      {/* ====================================================================
+          SECTION 6 — STUDENT INTEREST VS ACTUAL MARKET DEMAND (QUADRANT CHART)
+      ==================================================================== */}
+      <section aria-label="Workforce Quadrant Analysis Matrix">
+        <StudentInterestScatterQuadrant
+          skills={filteredSkills}
+          onSelectSkill={handleOpenDetail}
+        />
+      </section>
+
+      {/* ====================================================================
+          SECTION 7 & 8 — SKILL SHORTAGE WATCHLIST & EMERGING DEMAND SIGNALS
+      ==================================================================== */}
+      <div className="space-y-6">
+        {/* Section 7: Skill Shortage Watchlist */}
+        <section aria-label="Skill Shortage Watchlist">
+          <SkillShortageWatchlist
+            skills={filteredSkills}
+            onSelectSkill={handleOpenDetail}
           />
-        </div>
+        </section>
+
+        {/* Section 8: Emerging Demand Signals */}
+        <section aria-label="Emerging Demand Signals and Momentum Trajectories">
+          <EmergingDemandSignals
+            skills={filteredSkills}
+            onSelectSkill={handleOpenDetail}
+          />
+        </section>
       </div>
 
-      {/* Core Intelligence Concept Card */}
-      <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2.5">
-          <TrendingUp className="w-5 h-5 text-emerald-700 shrink-0" />
-          <p className="text-emerald-900 leading-relaxed">
-            <strong>Core Concept: Industry Demand vs. Available Skills.</strong> High growth (+34%) coupled with Low Student Supply signals immediate workforce bottlenecks that require curriculum intervention.
-          </p>
-        </div>
-      </div>
+      {/* ====================================================================
+          SECTION 9 — SKILL DEMAND INSIGHT PANEL (INTELLIGENT SUMMARY CARD)
+      ==================================================================== */}
+      <section aria-label="Dynamic Skill Demand Intelligence Synthesis">
+        <SkillDemandInsightPanel
+          metrics={dashboardMetrics}
+          activeIndustry={filters.industry}
+        />
+      </section>
 
-      {/* Searchable Skill Demand Table */}
-      <Card padding="none">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr className="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold text-slate-600 uppercase tracking-wider">
-                <th className="py-3 px-5">Skill Competency</th>
-                <th className="py-3 px-5">Category</th>
-                <th className="py-3 px-5 text-center">Industry Demand</th>
-                <th className="py-3 px-5 text-center">YoY Growth</th>
-                <th className="py-3 px-5 text-center">Available Student Supply</th>
-                <th className="py-3 px-5 text-right">Supply Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
-              {filtered.map((item) => {
-                const isShortage = item.studentSupply === 'Low' || item.studentSupply === 'Very Low';
-                return (
-                  <tr key={item.skill} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3.5 px-5 font-bold text-slate-900">
-                      {item.skill}
-                    </td>
-                    <td className="py-3.5 px-5 text-slate-500">
-                      {item.category}
-                    </td>
-                    <td className="py-3.5 px-5 text-center">
-                      <Badge variant={item.demandLevel === 'Very High' ? 'danger' : 'brand'} size="sm">
-                        {item.demandLevel}
-                      </Badge>
-                    </td>
-                    <td className="py-3.5 px-5 text-center font-bold text-emerald-700 tabular-nums">
-                      +{item.growthPct}%
-                    </td>
-                    <td className="py-3.5 px-5 text-center">
-                      <span className={`font-semibold ${isShortage ? 'text-rose-600' : 'text-slate-800'}`}>
-                        {item.studentSupply}
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-5 text-right">
-                      <Badge variant={isShortage ? 'danger' : 'success'} size="sm">
-                        {isShortage ? 'Acute Deficit' : 'Balanced'}
-                      </Badge>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </Card>
+      {/* ====================================================================
+          SECTION 11 — INTERACTION: SKILL DETAIL & COMPARISON MODALS
+      ==================================================================== */}
+      <SkillDetailModal
+        skill={selectedSkill}
+        isOpen={isDetailModalOpen}
+        onClose={() => setIsDetailModalOpen(false)}
+        onAddToCompare={handleToggleCompare}
+        isCompared={selectedSkill ? compareList.some((s) => s.id === selectedSkill.id) : false}
+      />
+
+      <SkillCompareModal
+        skills={compareList}
+        isOpen={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+        onRemoveSkill={handleRemoveCompareSkill}
+        onClearAll={handleClearCompare}
+      />
     </div>
   );
 };
+export default SkillDemand;
